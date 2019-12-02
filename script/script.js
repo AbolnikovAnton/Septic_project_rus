@@ -11,15 +11,18 @@ const popupPhone = () => {
 
 
         callBtn.forEach((elem) => {
+
 			elem.addEventListener('click', () => {
+                event.preventDefault();
+
                 popupCall.style.display = 'block';
                 if (windowWidth > 768) {
-					popup.style.opacity = '0';
 				    }
                 });
             });
             
         popup.addEventListener('click', (event) => {
+
             let target = event.target;
     
             if (target.classList.contains('popup-close')) {
