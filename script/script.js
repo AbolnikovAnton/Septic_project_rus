@@ -3,8 +3,8 @@
 window.addEventListener('DOMContentLoaded', function () {
 'use strict';
 
-// popup phone
-const popupPhone = () => {
+// popups
+const popups = () => {
     const callBtn = document.querySelectorAll('.call-btn'),
         popupDiscount = document.querySelector('.popup-discount'),
         discountBtn = document.querySelectorAll('.discount-btn'),
@@ -55,5 +55,5 @@ const popupPhone = () => {
             });
         };
             
-    popupPhone();            
+    popups();            
 });
