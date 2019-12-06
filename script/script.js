@@ -144,25 +144,58 @@ const sendForm = () => {
     sendForm();
 
     
-//Validation Inputs
-// const validationInput = () => {
-//     let inputs = document.querySelectorAll('form');
+// Validation Inputs
+const validationInput = () => {
+    let inputs = document.querySelectorAll('form');
     
-//     inputs = document.querySelectorAll('input[class = "phone-user"]');
-// 		inputs.forEach((elem) => {
-// 			elem.addEventListener('input', () => {
-//                 elem.value = elem.value.replace(/[^0-9]/, '');
-// 			});
-// 		});
+    inputs = document.querySelectorAll('input[class = "phone-user"]');
+		inputs.forEach((elem) => {
+			elem.addEventListener('input', () => {
+                elem.value = elem.value.replace(/[^0-9]/, '');
+			});
+		});
 
-// 	inputs = document.querySelectorAll('input[name = "user_name"]');
-// 		inputs.forEach((elem) => {
-// 			elem.addEventListener('input', () => {
-//                 elem.value = elem.value.replace(/[^а-яА-Я]+$/i, '');
-// 			});
-// 		});
-//     };
+	inputs = document.querySelectorAll('input[name = "user_name"]');
+		inputs.forEach((elem) => {
+			elem.addEventListener('input', () => {
+                elem.value = elem.value.replace(/[^а-яА-Я]+$/i, '');
+			});
+		});
+    };
 
-    // validationInput();
+    validationInput();
+
+// function include(url) {
+//         let script = document.createElement('script');
+//         script.src = url;
+//         document.getElementsByTagName('head')[0].appendChild(script);
+//     }
+//     include('script/validator.js');
+
+//accprdion
+const accordion = () =>{
+    let accItems = document.querySelectorAll('.panel-heading');
+
+    accItems[0].classList.add('active');
+
+    for (let i = 0; i < accItems.length; i++) {
+        const element = accItems[i];
+        
+        element.onclick = () =>{
+            event.preventDefault();
+
+            accItems.forEach((item) =>{
+                item.classList.remove('active');
+                item.nextElementSibling.classList.add('hide');
+                item.nextElementSibling.classList.remove('show');
+            });
+
+            element.classList.add('active');
+            element.nextElementSibling.classList.remove('hide');
+            element.nextElementSibling.classList.add('show');
+            };
+        } 
+    };
+    
+    accordion();
 });
-maskPhone('input[class = "phone-user"]', '+7 (___) ___-__-__');

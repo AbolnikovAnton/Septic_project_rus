@@ -2,7 +2,7 @@
 
 'use strict';
     
-class validator{
+class Validator{
     constructor({selector, pattern = {}, method}){
         this.form = document.querySelector(selector);
         this.pattern = pattern;
@@ -18,9 +18,35 @@ class validator{
         this.applyStyle();
         this.setPattern();
         this.elementsForm.forEach(elem => elem.addEventListener('change', this.chekIt.bind(this)));
+        this.form.addEventListener('submit', e => {
+            e.preventDefault();
+            this.elementsForm.forEach(elem => this.chekIt({target: elem}));
+            if (this.error.size) {
+                e.preventDefault();
+            }
+        });
     }
 
     isValid(elem){
+        const validatorMethod = {
+            notEmpty(elem){
+                if(elem.value.trim === ''){
+                    return false;
+                }
+                return true;
+            },
+            pattern(elem, pattern){
+                return pattern.test(elem.value);
+            }
+        };
+
+        if (this.method) {
+            const method = this.method[elem.id];
+
+            if (method) {
+            return method.every(item => validatorMethod[item[0]](elem, this.pattern[item[1]]));
+            }
+        }
         return true;
     }
 
@@ -39,7 +65,7 @@ class validator{
     showError(elem){
         elem.classList.remove('success');
         elem.classList.add('error');
-        if(elem.nextElementSibling.classList.contains('validator-error')){
+        if(elem.nextElementSibling && elem.nextElementSibling.classList.contains('validator-error')){
             return;
         }
         const errorDiv = document.createElement('div');
@@ -51,7 +77,7 @@ class validator{
     showSuccess(elem){
         elem.classList.remove('error');
         elem.classList.add('success');
-        if (elem.nextElementSibling.classList.contains('validator-error')) {    
+        if (elem.nextElementSibling && elem.nextElementSibling.classList.contains('validator-error')) {    
             elem.nextElementSibling.remove();
         }
     }
@@ -74,6 +100,12 @@ class validator{
     }
 
     setPattern(){
+        if (!this.pattern.phone) {
+            this.pattern.phone = /^\+?[78]([-()]*\d){10}$/;
+        }
         
+        if (!this.pattern.phone) {
+            this.pattern.email = /^\w+@w+\.\w{2,}$/;
+        }
     }
 }
