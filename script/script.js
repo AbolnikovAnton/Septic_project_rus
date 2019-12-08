@@ -181,13 +181,13 @@ const accordion = () =>{
     for (let i = 0; i < accItems.length; i++) {
         const element = accItems[i];
         
-        element.onclick = () =>{
+        element.onclick = () =>{    
             event.preventDefault();
 
-            accItems.forEach((item) =>{
-                item.classList.remove('active');
-                item.nextElementSibling.classList.add('hide');
-                item.nextElementSibling.classList.remove('show');
+        accItems.forEach((item) =>{
+            item.classList.remove('active');
+            item.nextElementSibling.classList.add('hide');
+            item.nextElementSibling.classList.remove('show');
             });
 
             element.classList.add('active');
@@ -211,4 +211,31 @@ const addButton = () =>{
     };
 
     addButton();
+
+//accordion + calculator    
+let calculatorBtn = document.querySelectorAll('.construct-btn');
+let accItems = document.querySelectorAll('.panel-heading');
+
+
+    calculatorBtn.forEach((elem) =>{
+        elem.addEventListener('click', ()=>{
+
+            for (let i = 0; i < accItems.length; i++) {
+                const element = accItems[i];
+       
+                accItems.forEach((item) =>{
+                    item.previousElementSibling.remove('active');
+                    console.log(item.previousElementSibling);
+                    
+                    // item.nextElementSibling.classList.add('hide');
+                    // item.nextElementSibling.classList.remove('show');
+                    
+                });
+                
+                // document.parentElement.classList.remove('hide');
+                // document.parentElement.classList.add('show');
+                    }
+                });
+    });
+
 });
