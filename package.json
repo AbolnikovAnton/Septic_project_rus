@@ -1,0 +1,24 @@
+{
+  "name": "diplom_light",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MotoTonic/Diplom_Bakunin_Anton_light.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MotoTonic/Diplom_Bakunin_Anton_light/issues"
+  },
+  "homepage": "https://github.com/MotoTonic/Diplom_Bakunin_Anton_light#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
