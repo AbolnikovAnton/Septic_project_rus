@@ -1,27 +1,45 @@
-
-const accordion = () =>{
-
+const accordion = () => {
     let accItems = document.querySelectorAll('.panel-heading');
+
+    let constructorStepButtons = document.querySelectorAll('.construct-btn:not(.call-btn)');
+
+    constructorStepButtons.forEach((elem) => {
+        elem.addEventListener('click', (event) => {
+            event.preventDefault();
+            const target = event.target;
+            const panel = target.closest('.panel');
+            const nextPanel = panel.nextElementSibling;
+            closeSection(panel);
+            openSection(nextPanel);
+        });
+    });
+
+    const closeSection = (section) => {
+        section.querySelector('.panel-collapse').classList.add('hide');
+        section.querySelector('.panel-collapse').classList.remove('show');
+    };
+    const openSection = (section) => {
+        section.querySelector('.panel-collapse').classList.remove('hide');
+        section.querySelector('.panel-collapse').classList.add('show');
+    };
 
     for (let i = 0; i < accItems.length; i++) {
         const element = accItems[i];
-        
-        element.onclick = () =>{    
-            event.preventDefault();
 
-        console.log(element);
-        
-        accItems.forEach((item) =>{
-            item.classList.remove('active');
-            item.nextElementSibling.classList.add('hide');
-            item.nextElementSibling.classList.remove('show');
+        element.onclick = (event) => {
+            event.preventDefault();
+            const target = event.target;
+            const panel = target.closest('.panel');
+
+            accItems.forEach((item) => {
+                closeSection(item.closest('.panel'));
             });
 
-            element.classList.add('active');
-            element.nextElementSibling.classList.remove('hide');
-            element.nextElementSibling.classList.add('show');
+            openSection(panel);
         };
-    } 
+    }
+
 };
+
 
 export default accordion;
